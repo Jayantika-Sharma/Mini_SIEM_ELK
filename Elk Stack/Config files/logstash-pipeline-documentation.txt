@@ -1,0 +1,54 @@
+input {
+  file {
+    path => "/var/log/auth.log"
+    start_position => "beginning"
+    sincedb_path => "/var/lib/logstash/sincedb_auth"
+    type => "ssh_auth"
+  }
+  file {
+    path => "/var/log/apache2/access.log"
+    start_position => "beginning"
+    sincedb_path => "/var/lib/logstash/sincedb_auth"
+    type => "apache_access"
+  }
+}
+
+filter {
+  if [type] == "ssh_auth" {
+    grok {
+      match => { "message" => [
+        "Failed password for invalid user %{USERNAME:user.name} from %{IP:source.ip} port %{NUMBER:source.port} ssh2",
+        "Failed password for %{USERNAME:user.name} from %{IP:source.ip} port %{NUMBER:source.port} ssh2",
+        "Accepted password for %{USERNAME:user.name} from %{IP:source.ip} port %{NUMBER:source.port} ssh2"
+      ] }
+    }
+
+    if [source.ip] {
+      mutate {
+        convert => { "source.ip" => "string" }
+      }
+    }
+
+    if "Failed" in [message] {
+      mutate { add_field => { "event.outcome" => "failure" } }
+    } else if "Accepted" in [message] {
+      mutate { add_field => { "event.outcome" => "success" } }
+    }
+  }
+
+  if [type] == "apache_access" {
+    grok {
+      match => { "message" => "%{COMBINEDAPACHELOG}" }
+    }
+  }
+}
+
+output {
+  elasticsearch {
+    hosts => ["http://127.0.0.1:9200"]
+    index => "logstash-%{+YYYY.MM.dd}"
+  }
+  stdout {
+    codec => rubydebug
+  }
+}
