@@ -31,17 +31,25 @@ To check the Elasticsearch version and cluster information:
 
 ```curl -sS http://127.0.0.1:9200/```
 
+<img src="../Images/ElasticSearch/curl1.png" height=200px>
+
 To check cluster health:
 
 ```curl -sS 'http://127.0.0.1:9200/_cluster/health?pretty'```
+
+<img src="../Images/ElasticSearch/curl2.png" height=200px>
 
 List logs index:
 
 ```curl -sS 'http://127.0.0.1:9200/_cat/indices/logstash-*?v'```
 
+<img src="../Images/ElasticSearch/curl3.png" height=200px>
+
 Inspect the index mappings:
 
 ```curl -sS 'http://127.0.0.1:9200/logstash-*/_mapping?pretty'```
+
+<img src="../Images/ElasticSearch/kibana_1.png" height=200px>
 
 Retrieve sample documents:
 
@@ -51,6 +59,8 @@ curl -sS -X GET \
 -H 'Content-Type: application/json' \
 -d '{"size": 5, "query": {"match_all": {}}}'
 ```
+
+<img src="../Images/ElasticSearch/kibana_2.png" height=200px>
 
 ## 5. Data Storage and Search
 

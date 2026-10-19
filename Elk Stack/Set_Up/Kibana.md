@@ -31,6 +31,11 @@ The response distribution showed:
 - SSH auth: 100% records
 - Failure Status: 100% records
 
+<img src="../Images/main.png" height=200px>
+
+<img src="../Images/main2.png" height=200px>
+
+
 ## 6. Saved Objects and Export
 
 Kibana supports exporting saved objects, including dashboards, visualizations, searches, and data views.
@@ -42,6 +47,8 @@ To export the dashboard:
 3. Select the dashboard and its related objects.
 4. Choose Export.
 5. Save the downloaded NDJSON file in the repository's directory.
+
+<img src="../Images/dashboard.png" height=200px>
 
 ## 8. Limitations
 

@@ -35,6 +35,10 @@ The investigation included:
 - Searching requested `URLs` and `request` details.
 - Filtering records with `HTTP responses`.
 
+
+<img src="../Images/Kibana/main.png" height=200px>
+
+
 ## 5. Dashboard Configuration
 
 A  dashboard titled `Mini SIEM – Web Log` was created using the sample web logs.
@@ -47,6 +51,13 @@ The dashboard contains six panels:
 4. `HTTP Response Distribution` : Summarizes HTTP response codes.
 5. `Responses` : Displays a table of response related statistics such as timestamps,client Ip.
 6. `Recent Web Events` : Presents a table of recent aggregated web log information.
+
+<img src="../Images/Kibana/dashboard1.png" height=200px>
+
+<img src="../Images/Kibana/dashboard2.png" height=200px>
+
+<img src="../Images/Kibana/dashboard3.png" height=200px>
+
 
 ## 6. Observed Results
 
